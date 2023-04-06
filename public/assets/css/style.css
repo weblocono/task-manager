@@ -1,0 +1,599 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+
+/* Reset and base styles  */
+*,
+*::before,
+*::after {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    box-sizing: border-box;
+}
+
+/* Links */
+
+a, a:visited  {
+    text-decoration: none;
+}
+
+a:hover  {
+    text-decoration: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+/* Common */
+
+aside, nav, footer, header, section, main {
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+p + p {
+    margin-top: 1em;
+}
+
+ul {
+    list-style: none;
+}
+
+img, svg {
+    vertical-align: top;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Form */
+
+input, textarea, button, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button, input[type="submit"] {
+    display: inline-block;
+    box-shadow: none;
+    background-color: transparent;
+    background: none;
+    cursor: pointer;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+label {
+    cursor: pointer;
+}
+
+legend {
+    display: block;
+}
+
+
+/* Utility */
+
+.none {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+    display: block;
+    margin-left: -10000px;
+    background: transparent;
+    font-size: 0;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background: linear-gradient(116.82deg, #B83FAE 0%, #845EC2 100%);
+    margin: 0;
+    padding: 0;
+
+    padding-bottom: 200px;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/*Header*/
+header {
+    width: 100%;
+    padding-top: 40px;
+
+}
+
+.header_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 181.6%;
+    color: #FFFFFF;
+
+    margin-bottom: 23px;
+}
+
+.sub_logo {
+    font-size: 18px;
+    line-height: 25px;
+
+    color: #FFFFFF;
+}
+
+.btn {
+    width: 210px;
+    height: 45px;
+    text-align: center;
+    padding-top: 12px;
+    border: 1px solid #FFFFFF;
+    border-radius: 22px;
+
+}
+
+
+.btn a {
+    font-size: 16px;
+    line-height: 22px;
+    color: #FFFFFF;
+}
+
+/*Home Page*/
+
+.home_section {
+    width: 100%;
+}
+
+.home_section_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 300px;
+    padding-bottom: 300px;
+}
+
+h1 {
+    color: white;
+    font-size: 64px;
+
+    margin-bottom: 25px;
+}
+
+/*Sign In And Sign Up Pages */
+
+.signin_wrapper {
+    max-width: 500px;
+    width: 100%;
+
+    margin: 0 auto;
+
+    padding-top: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 366px;
+    height: 46px;
+
+    border: 1px solid #4A4A4A;
+    border-radius: 10px;
+
+
+    padding-left: 30px;
+
+    font-size: 16px;
+    line-height: 22px;
+    color: #4A4A4A;
+}
+
+label {
+    color: white;
+    font-size: 22px;
+}
+
+.policy {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.submit_btn {
+    width: 210px;
+    height: 45px;
+    background: #0081CF;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+}
+
+.inp_file {
+    all: unset;
+}
+
+.reg_link {
+    margin-top: 30px;
+    color: white;
+}
+
+
+/*Tasks Page*/
+
+.tasks_grid {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-gap: 30px;
+
+    margin-bottom: 30px;
+}
+
+.card_author {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+
+    color: #FFFFFF;
+
+    margin-bottom: 20px;
+
+}
+
+.task_card {
+    width: 270px;
+
+    background: #FFFFFF;
+    border-radius: 15px;
+
+    padding: 20px;
+    padding-top: 38px;
+}
+
+.task_title {
+    position: relative;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #333333;
+    margin-bottom: 20px;
+
+}
+
+.task_title::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+
+    position: absolute;
+    top: -18px;
+    left: 0;
+
+    background: #0081CF;
+    border-radius: 2px;
+}
+
+.info_row {
+    max-width: 167px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.info_item {
+    display: flex;
+    align-items: center;
+}
+
+.info_item img {
+    margin-right: 5px;
+}
+
+.info_item {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #828282;
+
+}
+
+.info_item span.show {
+    color: white;
+}
+
+.card_action_row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.more_wrapper {
+    border: 1px solid #0081CF;
+    border-radius: 3px;
+
+    text-align: center;
+
+    padding: 5px 30px;
+}
+
+.more_wrapper a {
+    font-size: 11px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #333333;
+}
+
+.card_action_item {
+    display: flex;
+    align-items: center;
+}
+
+.card_action_item img {
+    cursor: pointer;
+}
+
+.action_ico {
+    margin-right: 5px;
+}
+
+.delete_btn {
+    margin-top: 3px;
+    margin-left: 15px;
+}
+
+/*Task Add Page*/
+
+.add_section {
+    padding-top: 100px;
+}
+
+.form_wrapper {
+    max-width: 550px;
+    width: 100%;
+    height: 383px;
+
+    margin: 0 auto;
+
+    margin-top: 10px;
+
+    background: #FFFFFF;
+    border-radius: 15px;
+
+    padding: 80px 67px;
+
+}
+
+.form_wrapper h2 {
+    font-weight: 200;
+    font-size: 36px;
+    line-height: 49px;
+    text-align: center;
+
+    color: #000000;
+
+    margin-bottom: 35px;
+}
+
+.inp_wrapper {
+    margin-bottom: 25px;
+}
+
+
+/*Single Task*/
+
+.task_section {
+    padding-top: 50px;
+}
+
+.task_wrap {
+    width: 100%;
+    border: 1px solid #FFFFFF;
+    border-radius: 15px;
+
+    padding: 35px 30px;
+}
+
+.task_wrap h2 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 33px;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+    margin-bottom: 30px;
+}
+
+.theme.show {
+
+    width: 200px;
+    height: 40px;
+
+    border: 1px solid #FFFFFF;
+    border-radius: 8px;
+
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+}
+
+.theme.show a {
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.task_h2 {
+    margin-top: 25px;
+    margin-bottom: 30px;
+
+    font-size: 24px;
+    line-height: 33px;
+
+    color: #FFFFFF;
+}
+
+.comment_item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.avatar {
+    margin-right: 12px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.comment_author {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+    margin-bottom: 5px;
+
+}
+
+.comment_text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #FFFFFF;
+}
+
+textarea {
+    resize: none;
+    border: none;
+    outline: none;
+
+    padding-top: 9px;
+    padding-left: 16px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+
+.add_comment_btn {
+
+    margin-top: 25px;
+
+    width: 232px;
+    height: 40px;
+
+    border: 1px solid #FFFFFF;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+
+}
+
+
+.alert.alert-danger {
+
+    max-width: 450px;
+    width: 100%;
+
+    margin: 0 auto;
+
+    padding: 10px 15px;
+    background: #fc9292;
+
+    color: #bd3a3a;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+}
+
+.alert.alert-danger + .alert.alert-danger {
+    margin-top: 10px;
+}
+
+.comment_item {
+    margin-top: 10px;
+}

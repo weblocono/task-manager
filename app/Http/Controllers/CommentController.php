@@ -2,29 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CommentStoreRequest;
+use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
-use App\Models\Post;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function store(CommentStoreRequest $request, Post $post) 
-    {
-        $data = $request->validated();
 
-        $data['user_id'] = Auth::id();
+    public function store(CommentRequest $request) {
+        $validated = $request->validated();
 
-        $data['post_id'] = $post->id;
+        $validated['user_id'] = Auth::user()->id;
 
-        Comment::query()->create($data);
 
-        return back();
+        Comment::create($validated);
+
+        return redirect()->route('task.show', $validated['task_id']);
     }
 
-    public function delete(Comment $comment) 
-    {
+    public function delete(Comment $comment) {
         $comment->delete();
 
         return back();

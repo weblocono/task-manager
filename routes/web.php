@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\PostManagerController;
+
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CommentController;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,38 +16,49 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::controller(AuthController::class)->prefix('/auth')->as('auth')->group(function () {
-    Route::post('/login', 'login')->name('login_action');
-    Route::post('/registarion', 'registarion')->name('registarion_action');
+Route::controller(AuthController::class)->group(function() {
 
-    Route::controller(IndexController::class)->group(function() {
-        Route::get('/login', 'login')->name('login');
-        Route::get('/registarion', 'registarion')->name('registarion');
-    });
+    // Роут на страницы
+    Route::get('/signup', 'signup')->name('signup.index');
+    Route::get('/signin', 'signin')->name('signin.index');
 
+    // Обработчики форм
+    Route::post('/signup', 'register')->name('register');
+    Route::post('/signin', 'login')->name('login');
+
+    // Выход из профиля (logout)
+    Route::get('/logout', 'logout')->name('logout');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::controller(IndexController::class)->group(function() {
-        Route::get('/post', 'posts')->name('posts');
-        Route::get('/post/{post}', 'post')->name('post');
-    
-        
-    });
 
-    Route::controller(PostManagerController::class)->prefix('/posts')->as('posts')->group(function() {
-        Route::post('/', 'store')->name('create');
-        Route::post('/{post}/delete', 'delete')->name('delete');
-    });
+Route::controller(TaskController::class)->middleware('auth')->group(function() {
+    Route::get('/tasks', 'index')->name('task.index');
 
-    Route::controller(CommentController::class)->prefix('/comment/{post}')->as('comment')->group(function() {
-        Route::post('/', 'store')->name('create');
-        Route::post('/delete', 'delete')->name('delete');
-    });
+    Route::get('/tasks/add', 'add')->name('task.add');
+    Route::post('/tasks/add', 'store')->name('task.store');
+
+
+    Route::get('/tasks/{task}/edit', 'edit')->name('task.edit');
+    Route::post('/tasks/{task}/edit', 'update')->name('task.update');
+
+    Route::get('/tasks/{task}', 'show')->name('task.show');
+
+    Route::get('/tasks/{task}/delete', 'delete')->name('task.delete');
+});
+
+Route::controller(CommentController::class)->middleware('auth')->group(function() {
+    Route::post('/comment/store', 'store')->name('comment.store');
+    Route::get('/comment/{comment}/delete', 'delete')->name('comment.delete');
+});
+
+Route::get('/email', function() {
+    Mail::to('ireklox3@gmail.com')->send(new WelcomeMail);
+    return new WelcomeMail();
 });

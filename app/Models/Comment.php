@@ -10,8 +10,12 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'post_id',
-        'user_id',
         'text',
+        'user_id',
+        'task_id'
     ];
+
+    public function author() {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

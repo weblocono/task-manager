@@ -2,47 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegistrationRequest;
+use App\Http\Requests\SignInRequest;
+use App\Http\Requests\SignUpRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login(LoginRequest $request) 
-    {
-        if (Auth::attempt($request->validated())) {
-            $this->home();
-        }
-
-        return back()->withErrors(['incorrect' => 'Неверный логин или пароль']);
+    public function signin() {
+        return view('signin');
     }
 
-    public function registarion(RegistrationRequest $request) 
-    {
-        $data = $request->validated();
+    public function signup() {
+        return view('signup');
+    }
 
-        $data['password'] = Hash::make($request->password);
+    public function login(SignInRequest $request) {
+        $validated = $request->validated();
 
-        if ($request->file('avatar')) {
-            $data['avatar_path'] = $request->file('avatar')->store('public/avatar');
+        if (!Auth::attempt($validated)) {
+            return back()->withErrors(['invalid' => 'Invalid credentials'])->withInput($request->all());
         }
 
-        $user = User::query()->create($data);
+        return redirect()->route('task.index');
+    }
+
+    public function register(SignUpRequest $request) {
+        $validated = $request->validated();
+
+        $validated['password'] = Hash::make($validated['password']);
+
+        if ($request->file('avatar')) {
+            $validated['avatar'] = $request->file('avatar')->store('public/images');
+        }
+
+        $user = User::create($validated);
 
         Auth::login($user);
 
-        $this->home();
+        return redirect()->route('task.index');
+
     }
 
-    public function logout() 
-    {
+    public function logout() {
         Auth::logout();
-    }
 
-    private function home() 
-    {
         return redirect()->route('home');
     }
 }
